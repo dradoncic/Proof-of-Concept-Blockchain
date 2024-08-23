@@ -1,0 +1,125 @@
+Crytographic Hash Function
+    are the fundamental building blocks, that are used within many protocols
+
+    digital signature
+    
+    message authentication protocols
+
+    encryption
+
+    What is it?
+        hash function
+            - takes particular message of arbitrary length and implies a set mathemetical transformations to output a digest/hash
+            - size of digest is fixed in length (256 bits in length for SHA 256)
+            - deterministic, one input always outputs the same digest
+
+        properties (interelated, cannot guarantee that they always hold)
+            - computationally efficient 
+            - collision resistance (hard to find a colliding pair of inputs)
+            - hide information 
+            - look random (no predictability)
+
+            mathematical equivalent of a meat grinder (breaks down input, to make it look random)
+
+
+Digital Signatures
+    electronic analog of a physical signature
+
+    generate two keys at the same time, having some sort of mathematical relationship
+    should be hard to find private key, when only seeing public key
+        
+        private key 
+            - AKA signing key
+
+        public key
+            - AKA verification key
+            - should be hard to come up with private key, if you only see public key
+
+        signing messages
+            - are created through applying mathematical transformations on the message itself and the private key
+            - thus, outputting a "signed message"
+            - it should be the case that messages signatures, should be unique to the persons private key 
+                only they can create that type of signature
+            - signature is dependent on the message (changes as messages change)
+            - the message itself is turn into a hash and then used in the signing process
+                simplifies the signing procedure
+
+         verifying signed messages
+            - mathematical transformation applied to the message, the signature, and the public verification key of the person who signed
+                ascertains that the signature could only be created by that persons private key (without revealing private key)
+
+Transactions
+    - collective entries into a ledger (record of transaction history)
+    - digitally signed declaration by one party to another party
+    - transactions are made public in the ecosystem
+    - ownership of transaction is represented through some hashing function of the transaction history and persons public key
+    
+    Input/Output
+        - bitcoin ownerships, destination public key + amount, destination public key + change, signature
+        - some of the extra change goes back to the network, as a transaction fee, given to the miner
+            which are nodes in the bitcoin network that help with the broader verification of transactions
+        - all transactions are timestamped by miners to prevent double spending and other arbitrary attacks
+
+Proof of Work
+    - amount to puzzles, that are challenging to solve, thus not able to short circuit, and are easily verifiable
+
+    challenge string
+    
+    response string
+        prover, comes up with proof string, that when concatenated with challenge string and apply hash function, such that the 
+        output follows a very specific property
+            number of bits will be zero and the rest are any number
+    
+    only way to find this hash is by trial and error or brute force
+
+    more zeros required, means more work is needed to do since hash functions output randoms digests
+    
+    think of it like, hashing functions are coin flips where the first 40 indexes have to be 0, the chances of that
+    happening are close to none
+
+    adding zero, doubles computational work needed (halves the chances)
+
+    they seem quite simple, but it does indeed require a very specific proof string to create the neccessary hash
+
+
+Transaction Blockchains
+    nodes recieve broadcasted transactions and they incorporate these transactions into a ledger (block)
+
+    take all transactions within a given time window and colate them into a block, where the block is a page of the ledger
+
+    nodes goal is to take the block and add it to the chain (the ledger book)
+
+    they hash transactions in pairs using hashing functions, until they reach the final two hashes, which are hashed together to 
+    encode all the transactions within that block (binary tree)
+
+    now that single hash, is hashed together with the hash of the previous block published on the network and added to the chain
+
+    thus, every block incorporates every block before
+
+    Incentive
+        nodes can add transaction that rewards themselves, AKA generation transaction, to the block they put together
+
+        so if they are the node to publish that block, then they recieve the reward
+
+        nodes also get to recieve the transactions fees from all the transactions in the block (AKA the amount of bitcoin people set 
+        aside for the nodes)
+
+    if two blocks are published at the same time, a fork occurs, a nodes decide which block to add onto by choosing whichever block
+    had the most computational work put into publishing the block
+
+
+
+
+
+
+
+
+
+
+    
+
+
+        
+
+
+
